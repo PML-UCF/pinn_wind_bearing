@@ -22,4 +22,4 @@
 <p>Please refer to following source for required data:</p>
 <p><i>Yucesan, Yigit, 2019, "Wind Turbine Main Bearing Fatigue Life Prediction with PINN", <a href="url">https://doi.org/10.7910/DVN/ENNXLZ</a>, Harvard Dataverse, V1, UNF:6:o3b2Pkuz0uIgkQ57jEKGOA== [fileUNF]</i></p>
 
-<p>Download the data and extract folders to the directory where this repository is cloned.</p>
+<p>Download the data and <strong>extract folders inside wind_bearing_dataset to the directory where this repository is cloned.</strong></p>
