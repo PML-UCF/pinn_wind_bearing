@@ -1,7 +1,7 @@
 <h1>Wind Turbine Main Bearing Fatigue Life Estimation with Physics-informed Neural Networks</h1>
 
 <p>This repository is provided for replication of results presented in the article:</p>
-<i>Y.A. Yucesan and F.A.C. Viana, "Wind turbine main bearing fatigue life estimation with physics-informed neural networks," Proceedings of the Annual Conference of the PHM Society 2019</i>
+<p><i>Y.A. Yucesan and F.A.C. Viana, "Wind turbine main bearing fatigue life estimation with physics-informed neural networks," Proceedings of the Annual Conference of the PHM Society 2019</i></p>
 
 <p>This repository includes two versions of the code, named as: basic and advanced.</p>
 
