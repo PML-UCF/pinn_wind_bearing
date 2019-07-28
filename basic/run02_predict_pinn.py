@@ -44,6 +44,7 @@
 
 import numpy as np
 import pandas as pd
+import os
 from matplotlib import pyplot as plt
 
 from tensorflow.python.framework import ops
@@ -56,17 +57,19 @@ from models_and_functions import create_pinn_model, arrange_table
 
 if __name__ == "__main__":
     
+    parent_dir = os.path.dirname(os.getcwd())
+    
     # Import and manipulate input data 
-    dfLoad = pd.read_csv('./data/DynamicLoad_6Months.csv', index_col = None)['Turbine1']
+    dfLoad = pd.read_csv(parent_dir+'\data\\DynamicLoad_6Months.csv', index_col = None)['Turbine1']
     PLogFleet = np.log10(np.asarray(dfLoad))
     
-    dfTemp = pd.read_csv('./data/BearingTemp_6Months.csv', index_col = None)['Turbine1']
+    dfTemp = pd.read_csv(parent_dir+'\data\\BearingTemp_6Months.csv', index_col = None)['Turbine1']
     BTempFleet = np.asarray(dfTemp)
     
-    dfCyc = pd.read_csv('./data/Cycles_6Months.csv', index_col = None)['Turbine1']
+    dfCyc = pd.read_csv(parent_dir+'\data\\Cycles_6Months_bsc.csv', index_col = None)['Turbine1']
     CycFleet = np.asarray(dfCyc)
     
-    dfdKappa = pd.read_csv('./data/Dkappa_Prediction_6Months.csv', index_col = None, header = None)
+    dfdKappa = pd.read_csv(parent_dir+'\data\\Dkappa_Prediction_6Months_bsc.csv', index_col = None, header = None)
     dKappaFleet = np.asarray(dfdKappa.transpose())
     inputArray = np.dstack((dKappaFleet, CycFleet, PLogFleet, BTempFleet))
     
@@ -90,11 +93,11 @@ if __name__ == "__main__":
     b = (10/3)*np.log10(C)+np.log10(1e6)+np.log10(a1)  # Interception of linearized SN-Curve in log10-log10 space
     
     # Import and manipulate required tables
-    df = pd.read_csv('./tables/aSKF.csv')
+    df = pd.read_csv(parent_dir+'\\tables\\aSKF.csv')
     aSKFTable = arrange_table(df)
-    df = pd.read_csv('./tables/kappa.csv')
+    df = pd.read_csv(parent_dir+'\\tables\\kappa.csv')
     kappaTable = arrange_table(df)
-    df = pd.read_csv('./tables/etac.csv')
+    df = pd.read_csv(parent_dir+'\\tables\\etac.csv')
     etacTable = arrange_table(df)
     
     # Create PINN Model
@@ -110,7 +113,7 @@ if __name__ == "__main__":
     result = model.predict(inputArray)
     
     # Plot prediction against true damage
-    actualDamage = pd.read_csv('./data/True_FatigueDamage_6Months.csv', index_col = None)
+    actualDamage = pd.read_csv(parent_dir+'\data\\True_FatigueDamage_6Months_bsc.csv', index_col = None)
 
     plt.plot(range(actualDamage.shape[0]),actualDamage,'k-',label = 'Actual')
     plt.plot(range(result.shape[1]),result[0,:,:],'--',label = 'PINN Prediction')

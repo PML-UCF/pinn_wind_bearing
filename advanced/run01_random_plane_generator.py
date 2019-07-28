@@ -44,15 +44,16 @@
 
 import pandas as pd
 import numpy as np
+import os
 
 from pyDOE import lhs
 
+# =============================================================================
+#   RANDOM PLANE GENERATION
+# =============================================================================
+
 if __name__ == "__main__":
-    
-    # =============================================================================
-    #   RANDOM PLANE GENERATION
-    # =============================================================================
-    
+       
     def deltaGreaseDamagePlane(DOE,coefs):
         """Function to generate delta grease damage outputs for given DOE and plane coefficients
         """
@@ -60,6 +61,8 @@ if __name__ == "__main__":
         upBound = 1.3e-4
         delGrsDmg = lowBound + (upBound - lowBound) * (coefs[0]+coefs[1]*np.transpose(DOE)[0]-coefs[0]*np.transpose(DOE)[1]+coefs[2]*np.transpose(DOE)[2])
         return delGrsDmg
+    
+    parent_dir = os.path.dirname(os.getcwd())
     
     npnts = 500
     Xolhs = lhs(n = 3, samples = npnts, criterion = 'maximin', iterations = 10)
@@ -69,7 +72,6 @@ if __name__ == "__main__":
     scaledXolhs =  np.repeat(lowerBounds, npnts, axis = 0) + Xolhs * (upperBounds - lowerBounds)
     
     coefrand = np.random.random(3)
-    print(coefrand)
     dfPlane = pd.DataFrame({'dynamicLoads':np.transpose(scaledXolhs)[1],'bearingTemp':np.transpose(scaledXolhs)[2],'Dkappa':np.transpose(scaledXolhs)[0],'delDkappa':deltaGreaseDamagePlane(Xolhs,coefrand)})
-    dfPlane.to_csv('./data/random_plane_set_'+str(npnts)+'.csv', index = False)
+    dfPlane.to_csv(parent_dir+'\data\\random_plane_set_'+str(npnts)+'_adv.csv', index = False)
     

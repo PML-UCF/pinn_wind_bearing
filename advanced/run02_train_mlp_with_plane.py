@@ -44,6 +44,7 @@
 
 import pandas as pd
 import matplotlib.pyplot as plt
+import os
 
 from tensorflow.keras import Sequential
 
@@ -53,14 +54,12 @@ from tensorflow.keras.callbacks import ReduceLROnPlateau
 
 from pinn.layers import getScalingDenseLayer
 
-if __name__ == "__main__":
+# =============================================================================
+#     MLP TRAINING WITH PLANE
+# =============================================================================
 
-    dfPlane = pd.read_csv('./data/random_plane_set_500.csv')
-    
-    # =============================================================================
-    #     MLP TRAINING WITH PLANE
-    # =============================================================================
-    
+if __name__ == "__main__":
+           
     def build_model(dLInputScaling):
         model = Sequential([
                 dLInputScaling,
@@ -75,6 +74,10 @@ if __name__ == "__main__":
                       optimizer=optimizer,
                       metrics=['mean_absolute_error', 'mean_squared_error'])
         return model
+    
+    parent_dir = os.path.dirname(os.getcwd())
+    
+    dfPlane = pd.read_csv(parent_dir+'\data\\random_plane_set_500_adv.csv')
 
     inputsMLPTrain = dfPlane[['Dkappa','dynamicLoads','bearingTemp']]
     inputsMLPTrain_min = inputsMLPTrain.min(axis=0)
@@ -88,7 +91,7 @@ if __name__ == "__main__":
     outputsMLPTrain_range = outputsMLPTrain.max(axis=0) - outputsMLPTrain_min
     outputsMLPTrain_norm = (outputsMLPTrain - outputsMLPTrain_min)/outputsMLPTrain_range
     
-    dfTrueDOE = pd.read_csv('./data/true_set_500.csv')
+    dfTrueDOE = pd.read_csv(parent_dir+'\data\\true_set_500_adv.csv')
 
     inputsMLPPred = dfTrueDOE[['Dkappa','dynamicLoads','bearingTemp']]
     
@@ -107,7 +110,7 @@ if __name__ == "__main__":
     
     MLPresults = MLPmodel.predict(inputsMLPPred)
     
-    fig = plt.figure(figsize =[5.0, 4.0] )
+    fig = plt.figure(figsize =[5.0, 4.0])
     
     yLB = min(list(MLPresults)+list(outputsMLPPred_norm['delDkappa']))
     yUB = max(list(MLPresults)+list(outputsMLPPred_norm['delDkappa']))

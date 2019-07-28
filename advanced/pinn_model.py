@@ -55,7 +55,9 @@ from pinn.layers import CumulativeDamageCell
 from pinn.layers import SNCurve
 from pinn.layers import inputsSelection, TableInterpolation
 
-# Model
+# =============================================================================
+#     PINN MODEL
+# =============================================================================
         
 def create_model(a, b, Pu,
                  grid_array_aSKF, bounds_aSKF, table_shape_aSKF,

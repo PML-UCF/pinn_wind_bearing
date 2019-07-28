@@ -44,11 +44,16 @@
 
 import numpy as np
 import pandas as pd
+import os
 from matplotlib import pyplot as plt
 
 from tensorflow.python.framework import ops
 
 from pinn_model import create_model
+
+# =============================================================================
+#     PINN PREDICTION
+# =============================================================================
 
 if __name__ == "__main__":
     
@@ -64,24 +69,25 @@ if __name__ == "__main__":
         return {'data':data, 'bounds':bounds, 'table_shape':table_shape}
     
     # Training
+    parent_dir = os.path.dirname(os.getcwd())
     
-    dfLoad = pd.read_csv('./data/DynamicLoad_30Years.csv', index_col = None)
+    dfLoad = pd.read_csv(parent_dir+'\data\\DynamicLoad_30Years_adv.csv', index_col = None)
     dfLoad = dfLoad[:6*24*180*40]
     dfLoad = np.asarray(dfLoad).reshape((40,6*24*180))
     PLogFleet = np.log10(dfLoad)
     nFleet, n10min = PLogFleet.shape
     
-    dfTemp = pd.read_csv('./data/BearingTemp_30Years.csv', index_col = None)
+    dfTemp = pd.read_csv(parent_dir+'\data\\BearingTemp_30Years_adv.csv', index_col = None)
     dfTemp = dfTemp[:6*24*180*40]
     dfTemp = np.asarray(dfTemp).reshape((40,6*24*180))
     BTempFleet = dfTemp
     
-    dfCyc = pd.read_csv('./data/Cycles_30Years.csv', index_col = None)
+    dfCyc = pd.read_csv(parent_dir+'\data\\Cycles_30Years_adv.csv', index_col = None)
     dfCyc = dfCyc[:6*24*180*40]
     dfCyc = np.asarray(dfCyc).reshape((40,6*24*180))
     CycFleet = dfCyc
     
-    dfdKappa = pd.read_csv('./data/Dkappa_30Years.csv', index_col = None, header = None)
+    dfdKappa = pd.read_csv(parent_dir+'\data\\Dkappa_30Years_adv.csv', index_col = None, header = None)
     dKappaFleet = np.asarray(dfdKappa.transpose())
     inputArray = np.dstack((dKappaFleet, CycFleet, PLogFleet, BTempFleet))
     
@@ -104,11 +110,11 @@ if __name__ == "__main__":
     b = (10/3)*np.log10(C)+np.log10(1e6)+np.log10(a1)  # Interception of linearized SN-Curve in log10-log10 space
     
     # Load and manipulate required tables
-    df = pd.read_csv('./tables/aSKF.csv')
+    df = pd.read_csv(parent_dir+'\\tables\\aSKF.csv')
     aSKFTable = arrangeTable(df)
-    df = pd.read_csv('./tables/kappa.csv')
+    df = pd.read_csv(parent_dir+'\\tables\\kappa.csv')
     kappaTable = arrangeTable(df)
-    df = pd.read_csv('./tables/etac.csv')
+    df = pd.read_csv(parent_dir+'\\tables\\etac.csv')
     etacTable = arrangeTable(df)
     
     
@@ -129,9 +135,9 @@ if __name__ == "__main__":
     plt.plot(range(len(summedPrediction)),summedPrediction,'--',label = 'PINN Prediction')            
             
         
-    virginDamage = pd.read_csv('./data/fatigueDamage_Virgin.csv', index_col = None).dropna()
-    degradedDamage = pd.read_csv('./data/fatigueDamage_Degraded.csv', index_col = None).dropna()
-    actualDamage = pd.read_csv('./data/fatigueDamage_Actual.csv', index_col = None).dropna()
+    virginDamage = pd.read_csv(parent_dir+'\data\\fatigueDamage_Virgin_adv.csv', index_col = None).dropna()
+    degradedDamage = pd.read_csv(parent_dir+'\data\\fatigueDamage_Degraded_adv.csv', index_col = None).dropna()
+    actualDamage = pd.read_csv(parent_dir+'\data\\fatigueDamage_Actual_adv.csv', index_col = None).dropna()
     
             
     plt.plot(range(virginDamage.shape[0]),virginDamage,'g-',label = 'Virgin Grease')
