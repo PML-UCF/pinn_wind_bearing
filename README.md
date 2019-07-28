@@ -4,6 +4,7 @@
 <i>Y.A. Yucesan and F.A.C. Viana, "Wind turbine main bearing fatigue life estimation with physics-informed neural networks," Proceedings of the Annual Conference of the PHM Society 2019</i>
 
 <p>This repository includes two versions of the code, named as: basic and advanced.</p>
+
 <p>Basic code has two main files:
 <ul>
   <li>run01 file trains the RNN using pretrained MLP model with fixed initial weights.</li>
