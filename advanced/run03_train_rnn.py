@@ -120,11 +120,10 @@ if __name__ == "__main__":
         inputArray = np.dstack((PFleetInv, BTempFleet))
         
         myDtype = 'float32'
-        inputTensor = ops.convert_to_tensor(inputArray, dtype = myDtype)
-        batch_input_shape = inputTensor.shape
+        batch_input_shape = inputArray.shape
         
         d0RNN = np.asarray([0.0])
-        d0RNN = ops.convert_to_tensor(d0RNN * np.ones((inputArray.shape[0], 1)), dtype=myDtype)
+        d0RNN = d0RNN * np.ones((inputArray.shape[0], 1), dtype=myDtype)
         
         dfVsc = pd.read_csv(parent_dir+'\data\\ViscDamage_6Months.csv', index_col = None)
         dfVsc = np.asarray(dfVsc.dropna())
@@ -136,7 +135,7 @@ if __name__ == "__main__":
         
         callbacks_list = [ReduceLR]
         
-        EPOCHS = 20
+        EPOCHS = 2
         
         mlp_model = load_model('.\models\MLP_RANDOM_PLANE.h5py')
         mlp_model.trainable = True
@@ -154,7 +153,7 @@ if __name__ == "__main__":
         
         InspectionsBefore = np.asarray([np.transpose(result_before)[0][inspectionArray,:]])
                 
-        history = RNNmodel.fit(inputTensor, multipleInspections, epochs=EPOCHS, verbose=1, steps_per_epoch=1 , callbacks=callbacks_list)
+        history = RNNmodel.fit(inputArray, multipleInspections, epochs=EPOCHS, verbose=1, steps_per_epoch=1 , callbacks=callbacks_list)
         
         df = pd.DataFrame.from_dict(history.history)
         df.insert(loc = 0, column='epoch', value = history.epoch)
@@ -179,11 +178,10 @@ if __name__ == "__main__":
         
         
         InputArrayVal = np.dstack((PFleetInv, BTempFleet))
-        inputTensorVal = ops.convert_to_tensor(InputArrayVal, dtype = myDtype)
-        batch_input_shape = inputTensorVal.shape
+        batch_input_shape = InputArrayVal.shape
         
         d0RNN = np.asarray([0.0])
-        d0RNN = ops.convert_to_tensor(d0RNN * np.ones((InputArrayVal.shape[0], 1)), dtype=myDtype)
+        d0RNN = d0RNN * np.ones((InputArrayVal.shape[0], 1), dtype=myDtype)
         
         RNNValmodel = create_model(inspectionArray, mlp_model, d0RNN, batch_input_shape,
                                  lowBounds_delgrs, upBounds_delgrs,
@@ -225,11 +223,10 @@ if __name__ == "__main__":
         BTempFleet = dfTemp
 
         InputArray30 = np.dstack((PFleetInv, BTempFleet))
-        inputTensor30 = ops.convert_to_tensor(InputArray30, dtype = myDtype)
-        batch_input_shape = inputTensor30.shape
+        batch_input_shape = InputArray30.shape
         
         d0RNN = np.asarray([0.0])
-        d0RNN = ops.convert_to_tensor(d0RNN * np.ones((InputArray30.shape[0], 1)), dtype=myDtype)
+        d0RNN = d0RNN * np.ones((InputArray30.shape[0], 1), dtype=myDtype)
         
         RNN30model = create_model(inspectionArray, mlp_model, d0RNN, batch_input_shape,
                                  lowBounds_delgrs, upBounds_delgrs,

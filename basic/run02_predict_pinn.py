@@ -47,8 +47,6 @@ import pandas as pd
 import os
 from matplotlib import pyplot as plt
 
-from tensorflow.python.framework import ops
-
 from models_and_functions import create_pinn_model, arrange_table
 
 # =============================================================================
@@ -71,19 +69,18 @@ if __name__ == "__main__":
     
     dfdKappa = pd.read_csv(parent_dir+'\data\\Dkappa_Prediction_6Months_bsc.csv', index_col = None, header = None)
     dKappaFleet = np.asarray(dfdKappa.transpose())
+    
     inputArray = np.dstack((dKappaFleet, CycFleet, PLogFleet, BTempFleet))
+    batch_input_shape = inputArray.shape
     
     myDtype = 'float32'
-    inputTensor = ops.convert_to_tensor(inputArray, dtype = myDtype)
-    batch_input_shape = inputTensor.shape
-    
     # Create masks for input selection
     d0RNN = np.asarray([0.0])
     selectdKappa = [len(d0RNN)]
     selectCycle = [len(d0RNN)+1]
     selectLoad = [len(d0RNN)+2]
     selectBTemp = [len(d0RNN)+3]
-    d0RNN = ops.convert_to_tensor(d0RNN * np.ones((inputArray.shape[0], 1)), dtype=myDtype)
+    d0RNN = d0RNN * np.ones((inputArray.shape[0], 1), dtype=myDtype)
 
     # Preliminaries
     a1 = 1.0                                           # 90% reliability life modification factor

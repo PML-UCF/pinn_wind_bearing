@@ -43,7 +43,6 @@
 # ==============================================================================
 
 import numpy as np
-import tensorflow as tf
 
 from pinn.layers import CumulativeDamageCell
 from pinn.layers import SNCurve
@@ -178,13 +177,13 @@ def create_pinn_model(a, b, Pu,
                                        dtype = myDtype,
                                        initial_damage = d0RNN)
     
-    CDMRNNhybrid = tf.keras.layers.RNN(cell = CDMCellHybrid,
-                                       return_sequences = return_sequences,
-                                       return_state = False,
-                                       batch_input_shape = batch_input_shape,
-                                       unroll = unroll)
+    CDMRNNhybrid = RNN(cell = CDMCellHybrid,
+                       return_sequences = return_sequences,
+                       return_state = False,
+                       batch_input_shape = batch_input_shape,
+                       unroll = unroll)
     
-    model = tf.keras.Sequential()
+    model = Sequential()
     model.add(CDMRNNhybrid)
-    model.compile(loss='mse', optimizer=tf.keras.optimizers.RMSprop(5e-4), metrics=['mae'])
+    model.compile(loss='mse', optimizer=RMSprop(5e-4), metrics=['mae'])
     return model

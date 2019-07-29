@@ -46,8 +46,6 @@ import pandas as pd
 import numpy as np
 import os
 
-from tensorflow.python.framework import ops
-
 from tensorflow.keras.callbacks import ReduceLROnPlateau
 from tensorflow.keras.models import load_model
 
@@ -72,14 +70,12 @@ if __name__ == "__main__":
     BTempFleet = np.transpose(np.asarray(dfTemp))
     
     inputArray = np.dstack((PFleetInv, BTempFleet))
+    batch_input_shape = inputArray.shape
     
     myDtype = 'float32'
-    inputTensor = ops.convert_to_tensor(inputArray, dtype = myDtype)
-    batch_input_shape = inputTensor.shape
-    
     # Set initial damage value 
     d0RNN = np.asarray([0.0])
-    d0RNN = ops.convert_to_tensor(d0RNN * np.ones((inputArray.shape[0], 1)), dtype=myDtype)
+    d0RNN = d0RNN * np.ones((inputArray.shape[0], 1), dtype=myDtype)
     
     # Import and set inspection data
     dfVsc = pd.read_csv(parent_dir+'\data\\ViscDamage_6Months.csv', index_col = None)
@@ -109,10 +105,10 @@ if __name__ == "__main__":
     
     callbacks_list = [ReduceLR]
     
-    EPOCHS = 20
+    EPOCHS = 2
     
     # Train RNN
-    history = RNNmodel.fit(inputTensor, multipleInspections, epochs=EPOCHS, verbose=1, steps_per_epoch=1 , callbacks=callbacks_list)
+    history = RNNmodel.fit(inputArray, multipleInspections, epochs=EPOCHS, verbose=1, steps_per_epoch=1 , callbacks=callbacks_list)
     
     df = pd.DataFrame.from_dict(history.history)
     df.insert(loc = 0, column='epoch', value = history.epoch)
