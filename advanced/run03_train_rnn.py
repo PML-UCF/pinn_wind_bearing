@@ -49,8 +49,6 @@ import os
 
 from pinn.layers import CumulativeDamageCell
 
-from tensorflow.python.framework import ops
-
 from tensorflow import concat, expand_dims
 from tensorflow.keras import Sequential
 from tensorflow.keras.losses import mean_squared_error as mse
@@ -135,7 +133,7 @@ if __name__ == "__main__":
         
         callbacks_list = [ReduceLR]
         
-        EPOCHS = 2
+        EPOCHS = 20
         
         mlp_model = load_model('.\models\MLP_RANDOM_PLANE.h5py')
         mlp_model.trainable = True
