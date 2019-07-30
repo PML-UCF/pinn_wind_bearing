@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/197470755.svg)](https://zenodo.org/badge/latestdoi/197470755)
 # Wind Turbine Main Bearing Fatigue Life Estimation with Physics-informed Neural Networks
 
 This repository is provided for replication of results presented in the article:
