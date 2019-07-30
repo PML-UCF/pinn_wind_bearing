@@ -133,7 +133,7 @@ if __name__ == "__main__":
         
         callbacks_list = [ReduceLR]
         
-        EPOCHS = 20
+        EPOCHS = 50
         
         mlp_model = load_model('.\models\MLP_RANDOM_PLANE.h5py')
         mlp_model.trainable = True

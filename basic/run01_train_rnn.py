@@ -105,7 +105,7 @@ if __name__ == "__main__":
     
     callbacks_list = [ReduceLR]
     
-    EPOCHS = 20
+    EPOCHS = 50
     
     # Train RNN
     history = RNNmodel.fit(inputArray, multipleInspections, epochs=EPOCHS, verbose=1, steps_per_epoch=1 , callbacks=callbacks_list)
