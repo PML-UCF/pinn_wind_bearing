@@ -3,6 +3,9 @@
 
 This repository is provided for replication of results presented in:
 - Y. A. Yucesan and F. A. C. Viana, "[A physics-informed neural network for wind turbine main bearing fatigue](http://www.phmsociety.org/node/2736)," International Journal of Prognostics and Health Management, Vol. 11 (1), 2020. (ISSN: 2153-2648).
+
+- Y. A. Yucesan and F. A. C. Viana, "[A hybrid model for main bearing fatigue prognosis based on physics and machine learning](https://arc.aiaa.org/doi/abs/10.2514/6.2020-1412)," AIAA SciTech Forum, Orlando, USA, January 6-10, 2020, AIAA 2020-1412 (DOI: 10.2514/6.2020-1412).
+
 - Y. A. Yucesan and F. A. C. Viana, "[Wind turbine main bearing fatigue life estimation with physics-informed neural networks](http://phmpapers.org/index.php/phmconf/article/view/807)," Proceedings of the Annual Conference of the PHM Society, Vol. 11 (1), Scottsdale, USA, September 21-26, 2019 (DOI:10.36001/phmconf.2019.v11i1.807).
 
 This repository includes two sets of the code.
