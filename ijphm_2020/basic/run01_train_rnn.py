@@ -121,3 +121,4 @@ if __name__ == "__main__":
 
     dfres = pd.DataFrame(data=result[0,:,0].transpose())
     dfres.to_csv(parent_dir+'\data\\Dkappa_Prediction_6Months_bsc.csv',index=False, header=False)
+    

@@ -59,7 +59,7 @@ if __name__ == "__main__":
         """
         lowBound = 1e-7
         upBound = 1.3e-4
-        delGrsDmg = lowBound + (upBound - lowBound) * (coefs[0]+coefs[1]*np.transpose(DOE)[0]-coefs[0]*np.transpose(DOE)[1]+coefs[2]*np.transpose(DOE)[2])
+        delGrsDmg = lowBound + (upBound - lowBound) * (coefs[0]+coefs[1]*np.transpose(DOE)[0]+coefs[2]*np.transpose(DOE)[1]+coefs[3]*np.transpose(DOE)[2])
         return delGrsDmg
     
     parent_dir = os.path.dirname(os.getcwd())
@@ -71,7 +71,8 @@ if __name__ == "__main__":
     
     scaledXolhs =  np.repeat(lowerBounds, npnts, axis = 0) + Xolhs * (upperBounds - lowerBounds)
     
-    coefrand = np.random.random(3)
+    coefrand = np.random.random(4)
+    print(coefrand)
     dfPlane = pd.DataFrame({'dynamicLoads':np.transpose(scaledXolhs)[1],'bearingTemp':np.transpose(scaledXolhs)[2],'Dkappa':np.transpose(scaledXolhs)[0],'delDkappa':deltaGreaseDamagePlane(Xolhs,coefrand)})
     dfPlane.to_csv(parent_dir+'\data\\random_plane_set_'+str(npnts)+'_adv.csv', index = False)
     
