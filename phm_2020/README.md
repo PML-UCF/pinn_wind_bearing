@@ -2,7 +2,7 @@
 
 This repository is provided for replication of results presented in the article:
 
-*Y. A. Yucesan and F. A. C. Viana, "[A hybrid modeling for wind turbine main bearing fatigue with uncertainty in grease observations]," Proceedings of the Annual Conference of the PHM Society 2020*
+*Y. A. Yucesan and F. A. C. Viana, "A hybrid modeling for wind turbine main bearing fatigue with uncertainty in grease observations," Proceedings of the Annual Conference of the PHM Society 2020*
 
 This repository includes three python scripts.
 
