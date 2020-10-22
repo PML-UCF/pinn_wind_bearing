@@ -2,7 +2,7 @@
 
 This repository is provided for replication of results presented in the article:
 
-*Y. A. Yucesan and F. A. C. Viana, "Wind turbine main bearing fatigue life estimation with physics-informed neural networks," Proceedings of the Annual Conference of the PHM Society 2019*
+- Y. A. Yucesan and F. A. C. Viana, "[Wind turbine main bearing fatigue life estimation with physics-informed neural networks](http://phmpapers.org/index.php/phmconf/article/view/807)," Proceedings of the Annual Conference of the PHM Society, Vol. 11 (1), Scottsdale, USA, September 21-26, 2019 (DOI:10.36001/phmconf.2019.v11i1.807).
 
 This repository includes two sets of the code.
 
