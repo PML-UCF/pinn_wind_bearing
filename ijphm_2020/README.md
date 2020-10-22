@@ -1,6 +1,6 @@
 # Wind Turbine Main Bearing Fatigue Life Estimation with Physics-informed Neural Networks
 
-This repository is provided for replication of results presented in the article:
+This repository is provided for replication of results presented in the articles:
 
 - Y. A. Yucesan and F. A. C. Viana, "[Wind turbine main bearing fatigue life estimation with physics-informed neural networks](http://phmpapers.org/index.php/phmconf/article/view/807)," Proceedings of the Annual Conference of the PHM Society, Vol. 11 (1), Scottsdale, USA, September 21-26, 2019 (DOI:10.36001/phmconf.2019.v11i1.807).
 
