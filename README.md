@@ -26,6 +26,7 @@ Y. A. Yucesan and F. A. C. Viana, Python Scripts for Wind Turbine Main Bearing F
 ## Publications
 
 Over time, the following publications out of the PML-UCF research group used/referred to this repository:
+- Y. A. Yucesan and F. A. C. Viana, "Hybrid physics-informed neural networks for main bearing fatigue prognosis with visual grease inspection," Computers in Industry, 2020, under review.
 
 - Y. A. Yucesan and F. A. C. Viana, "A hybrid modeling for wind turbine main bearing fatigue with uncertainty in grease observations," Proceedings of the Annual Conference of the PHM Society 2020.
 
