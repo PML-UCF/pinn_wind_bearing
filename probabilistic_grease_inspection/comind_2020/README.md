@@ -2,7 +2,7 @@
 
 This repository is provided for replication of results presented in the article:
 
-*Y. A. Yucesan and F. A. C. Viana, "Hybrid physics-informed neural networks for main bearing fatigue prognosis with visual grease inspection," Computers in Industry 2020*
+*Y. A. Yucesan and F. A. C. Viana, "Hybrid physics-informed neural networks for main bearing fatigue prognosis with visual grease inspection," Computers in Industry, 2020, under review.*
 
 This repository includes three python scripts.
 
