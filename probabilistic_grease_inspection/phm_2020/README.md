@@ -2,11 +2,7 @@
 
 This repository is provided for replication of results presented in the article:
 
-<<<<<<< HEAD:probabilistic_grease_inspection/phm_2020/README.md
-*Y. A. Yucesan and F. A. C. Viana, "[A hybrid model for wind turbine main bearing fatigue with uncertainty in grease observations]," Proceedings of the Annual Conference of the PHM Society 2020*
-=======
 *Y. A. Yucesan and F. A. C. Viana, "A hybrid modeling for wind turbine main bearing fatigue with uncertainty in grease observations," Proceedings of the Annual Conference of the PHM Society 2020*
->>>>>>> 592815c266c631be7ecfefefb6b9d364a4c59d88:phm_2020/README.md
 
 This repository includes three python scripts.
 
