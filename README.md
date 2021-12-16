@@ -19,7 +19,7 @@ Please, cite this repository using:
         publisher = {Zenodo},
         url       = {https://github.com/PML-UCF/pinn_wind_bearing}
         }
-The corresponding reference entry should look like:
+The corresponding reference entry should look like this:
 
 Y. A. Yucesan and F. A. C. Viana, Python Scripts for Wind Turbine Main Bearing Fatigue Life Estimation with Physics-informed Neural Networks, v0.0.1, Zenodo, https://github.com/PML-UCF/pinn_wind_bearing, doi:10.5281/zenodo.3355725.
 
